@@ -136,7 +136,7 @@ exports.create = function (options, callback) {
 
     args = args.concat([ path.join(__dirname, 'bridge.js') ]);
 
-    var phantom = spawn(options.path, args);
+    var phantom = spawn(options.path, args, { env: { ...process.env, OPENSSL_CONF: '/dev/null' } });
 
     phantom.once('error', function (err) {
       callback(err);
